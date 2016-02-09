@@ -14,13 +14,27 @@ class LinkedList
       @tail.next = node
       @tail = node
     else
-      @head, @tail = node
+      @head = node
+      @tail = node
     end
   end
 
   def prepend(data)
     node = Node.new(data)
+    if @head
+      node.next = @head
+      @head = node
+    else
+      @head, @tail = node, node
+    end
 
+  end
+
+  def insert(position, data)
+    node = Node.new(data)
+    count = 0
+    if count == position
+    end
   end
 
   if __FILE__ == $0
@@ -28,8 +42,9 @@ class LinkedList
     list.append("first")
     list.append("second")
     list.append("third")
+    list.prepend("zeroth")
 
-    p list.head.data
+    p list
   end
 
 end
