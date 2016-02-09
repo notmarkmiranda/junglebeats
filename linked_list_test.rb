@@ -12,13 +12,28 @@ class LinkedListTest < Minitest::Test
     assert_equal nil, @tail
   end
 
-  def test_append_an_element_to_the_head_of_the_list
+  def test_append_an_element_to_the_empty_head_of_the_list
     list = LinkedList.new
     list.append("First Value")
-    binding.pry
     assert_equal "First Value", list.head.data
+    assert_equal nil, list.head.next
   end
-  #prepend an element to the beginning of the list
+  def test_append_second_item_to_list
+    list = LinkedList.new
+    list.append("First")
+    list.append("Second")
+    assert_equal "First", list.head.data
+    assert_equal "Second", list.tail.data
+    assert_equal nil, list.tail.next
+  end
+
+  def prepend_an_element_to_the_beginning_of_the_list
+    skip
+    list = LinkedList.new
+    list.append("First")
+    list.prepend("Zeroth")
+    assert_equal "Zeroth", list.head.data
+  end
   #insert one or more elements at an arbitrary position in the list
   #includes? gives back true or false whether the supplied value is in the list
   #pop one or more elements in the list

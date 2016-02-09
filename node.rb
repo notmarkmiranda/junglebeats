@@ -1,5 +1,5 @@
 class Node
-  attr_accessor :data, :link
+  attr_accessor :data, :next
 
   def initialize(data = nil)
     @data = data
