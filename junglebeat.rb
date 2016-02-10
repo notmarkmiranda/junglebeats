@@ -2,6 +2,7 @@ require 'pry'
 require_relative 'node'
 
 class JungleBeat
+  attr_accessor :head
 
   def initialize(values)
     separate_values(values)
@@ -86,7 +87,7 @@ class JungleBeat
   end
 
   # list = JungleBeat.new("first second third")
-  # p list.all
+  # p list
   # list.append("fourth fifth")
   # p list.all
   # list.prepend("zeroth")
