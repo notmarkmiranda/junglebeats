@@ -52,7 +52,56 @@ class JungleBeat
   end
 
   def include?(value)
+    @current_node = @head
+    while @current_node.next_node
+      return true if value == @current_node.value
+      @current_node = @current_node.next_node
+    end
+    false
+  end
 
+  def pop(num)
+    if num > count
+      return "I can't pop that many things"
+    end
+    popped_nodes = []
+
+    num.times do
+      @current_node = @head
+      while @current_node.next_node.next_node
+        @current_node = @current_node.next_node
+      end
+      popped_nodes.unshift(@current_node.next_node.value)
+      @current_node.next_node = nil
+    end
+
+    popped_nodes.join(" ")
+  end
+
+  def insert(num, values)
+    if num == 0
+      prepend(values)
+      return
+    elsif num == count
+      append(values)
+      return
+    elsif num > count
+      return "CANNOT COMPUTE"
+    else
+      @current_node = @head
+      num = num - 1
+      num.times do
+        @current_node = @current_node.next_node
+      end
+      temp = @current_node.next_node
+      separate(values)
+
+      @separated_values.each do |value|
+        @current_node.next_node = Node.new(value)
+        @current_node = @current_node.next_node
+      end
+      @current_node.next_node = temp
+    end
   end
 
   # helpers
@@ -84,8 +133,14 @@ class JungleBeat
     end
   end
 
-  # jb = JungleBeat.new("deep dep dep deep")
+
+  # jb = JungleBeat.new("first second fourth")
+  # jb.insert(2, "third")
+  # p jb.all
   # jb.prepend("boom")
+  # jb.pop(9)
+  # p jb
+
   # jb.play
 
 end

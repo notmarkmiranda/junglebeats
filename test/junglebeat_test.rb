@@ -63,4 +63,58 @@ class JungleBeat_Test < Minitest::Test
     jb = JungleBeat.new("first second third")
     assert_equal 3, jb.count
   end
+
+  #include?
+  def test_include?
+    jb = JungleBeat.new("first second third")
+    assert jb.include?("first")
+    refute jb.include?("fourth")
+  end
+
+  #pop
+  def test_pop
+    jb = JungleBeat.new("first second third")
+    assert_equal "second third", jb.pop(2)
+    assert_equal 1, jb.count
+  end
+
+  def test_it_wont_pop_more_items_than_on_list
+    jb = JungleBeat.new("first second third")
+    assert_equal "I can't pop that many things", jb.pop(4)
+  end
+
+  #insert
+  def test_insert_singles
+    jb = JungleBeat.new("first second fourth")
+    jb.insert(2, "third")
+    assert_equal 4, jb.count
+    assert_equal "first second third fourth", jb.all
+  end
+
+  def test_insert_multiples
+    jb = JungleBeat.new("first fourth")
+    jb.insert(1, "second third")
+    assert_equal 4, jb.count
+    assert_equal "first second third fourth", jb.all
+  end
+
+  def test_insert_at_zero
+    jb = JungleBeat.new("second third fourth")
+    jb.insert(0, "first")
+    assert_equal 4, jb.count
+    assert_equal "first second third fourth", jb.all
+  end
+
+  def test_insert_position_equals_list_count
+    jb = JungleBeat.new("first second third")
+    jb.insert(3, "fourth")
+    assert_equal 4, jb.count
+    assert_equal "first second third fourth", jb.all
+  end
+
+  def test_insert_position_higher_than_list_count
+    jb = JungleBeat.new("first second third")
+    assert_equal "CANNOT COMPUTE", jb.insert(4, "fifth")
+  end
+
 end
