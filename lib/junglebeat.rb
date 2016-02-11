@@ -120,6 +120,8 @@ class JungleBeat
     end
   end
 
+private
+
   # helpers
   def separate(values)
     @separated_values = []
@@ -144,5 +146,4 @@ class JungleBeat
       @current_node = @current_node.next_node
     end
   end
-
 end
