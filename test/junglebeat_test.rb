@@ -112,9 +112,30 @@ class JungleBeat_Test < Minitest::Test
     assert_equal "first second third fourth", jb.all
   end
 
-  def test_insert_position_higher_than_list_count
+  def test_insert_positiong_greater_than_list_count
     jb = JungleBeat.new("first second third")
     assert_equal "CANNOT COMPUTE", jb.insert(4, "fifth")
+  end
+
+  #find
+  def test_find
+    jb = JungleBeat.new("first second third fourth")
+    assert_equal "third fourth", jb.find(2, 2)
+  end
+
+  def test_find_again
+    jb = JungleBeat.new("first second third fourth fifth sixth")
+    assert_equal "second third fourth", jb.find(1,3)
+  end
+
+  def test_find_position_greater_than_list_count
+    jb = JungleBeat.new("first second third fourth fifth sixth")
+    assert_equal "CANNOT COMPUTE", jb.find(3, 4)
+  end
+
+  def test_find_position_greater_than_list_count
+    jb = JungleBeat.new("first second third fourth fifth sixth")
+    assert_equal "fourth fifth sixth", jb.find(3, 3)
   end
 
 end

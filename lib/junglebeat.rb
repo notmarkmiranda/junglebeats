@@ -102,6 +102,27 @@ class JungleBeat
       end
       @current_node.next_node = temp
     end
+    all
+  end
+
+  def find(num, number)
+    if num + number > count
+      "CANNOT COMPUTE"
+    else
+      found = []
+      @current_node = @head
+      num = num - 1
+      num.times do
+        @current_node = @current_node.next_node
+      end
+
+      number.times do
+        found << @current_node.next_node.value
+        @current_node = @current_node.next_node
+      end
+
+      found.join(" ")
+    end
   end
 
   # helpers
