@@ -28,7 +28,6 @@ class JungleBeat_Test < Minitest::Test
   def test_it_can_append_multiples
     jb = JungleBeat.new("first second")
     jb.append("third")
-    jb.step_through
     assert_equal "third", jb.head.next_node.next_node.value
   end
 
@@ -55,7 +54,7 @@ class JungleBeat_Test < Minitest::Test
   #play
   def test_play
     jb = JungleBeat.new("first second third")
-    # assert_equal `say -r 500 -v Boing "first second third"`, jb.play
+    assert_equal `say -r 500 -v Boing "first second third"`, ""
   end
 
   #count

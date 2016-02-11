@@ -17,11 +17,8 @@ class JungleBeat
 
   def prepend(values)
     temp_head = @head
-    separate(values)
-    create_head
-    # step_through
-    create_next_nodes
-    @current_node.next_node =temp_head
+    initialize(values)
+    @current_node.next_node = temp_head
     @separated_values.size + 1
   end
 
@@ -81,12 +78,10 @@ class JungleBeat
   def insert(num, values)
     if num == 0
       prepend(values)
-      return
     elsif num == count
       append(values)
-      return
     elsif num > count
-      return "CANNOT COMPUTE"
+      "CANNOT COMPUTE"
     else
       @current_node = @head
       num = num - 1
@@ -101,8 +96,8 @@ class JungleBeat
         @current_node = @current_node.next_node
       end
       @current_node.next_node = temp
+      all
     end
-    all
   end
 
   def find(num, number)
@@ -142,26 +137,12 @@ class JungleBeat
   def create_next_nodes
     @current_node = @head
     @separated_values.each do |value|
-      step_through
+      while @current_node.next_node
+        @current_node = @current_node.next_node
+      end
       @current_node.next_node = Node.new(value)
       @current_node = @current_node.next_node
     end
   end
-
-  def step_through
-    while @current_node.next_node
-      @current_node = @current_node.next_node
-    end
-  end
-
-
-  # jb = JungleBeat.new("first second fourth")
-  # jb.insert(2, "third")
-  # p jb.all
-  # jb.prepend("boom")
-  # jb.pop(9)
-  # p jb
-
-  # jb.play
 
 end
